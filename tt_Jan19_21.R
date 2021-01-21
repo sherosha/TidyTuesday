@@ -38,11 +38,11 @@ waste<- waste %>%
 waste<-waste %>%  filter(admin_area =='County') %>% 
   mutate(collected=sum(c(collected_county_gvt,collected_community_association,collected_private_company))) %>% 
   mutate(dumped=sum(c(dumped_compound,dumped_street,dumped_latrine))) %>% 
-  mutate(burnt=sum(c(burnt_inopen,burnt_pit))) %>% 
+  mutate(burned=sum(c(burnt_inopen,burnt_pit))) %>% 
   mutate(decomposition=sum(c(buried,compost_pit)))
 
 #select only required columns
-waste<-waste %>% select(county,collected,dumped,burnt,decomposition)
+waste<-waste %>% select(county,collected,dumped,burned,decomposition)
   
 
 #convert to long format
@@ -70,8 +70,8 @@ tt_kenyacensuswaste<-ggplot(long)+
                     labels=c("Collected (government,community association and private companies)",
                              "Composted and Buried",
                              "Dumped (within compound, street and latrine)",
-                             "Burnt (in open and pits)"))+
-  labs(title = "Waste disposal in Kenyan counties", subtitle="Data: 2019 Kenya Population and Housing Census", x="Percentage of population",y =element_blank())
+                             "Burned (in open and pits)"))+
+  labs(title = "Waste disposal in Kenyan counties", subtitle="Data: 2019 Kenya Population and Housing Census", x="Percentage of households",y =element_blank())
 ggsave("tt_kenyacensuswaste.png")  
    
 
