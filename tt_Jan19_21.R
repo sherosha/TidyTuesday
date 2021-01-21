@@ -33,7 +33,7 @@ waste<- waste %>%
   mutate(county=str_to_title(county))
 
 #pick only the 47 counties to work with
-#then aggregate collection methods and create new columns with totals per county
+#then group collection methods and create new columns with totals per county
 
 waste<-waste %>%  filter(admin_area =='County') %>% 
   mutate(collected=sum(c(collected_county_gvt,collected_community_association,collected_private_company))) %>% 
@@ -57,18 +57,22 @@ cbp <- c("#56B4E9", "#009E73",
           "#F0E442", "#D55E00")
 
 #plot
-ggplot(long)+
+tt_kenyacensuswaste<-ggplot(long)+
   geom_col(aes(x = percent, y = county, fill = disposal))+
   theme_light()+
   theme(panel.grid.major=element_line(colour = "gray", linetype=3,size = 0.25),
         rect = element_rect(fill = "white", colour = "white", size = 0.25,linetype = 0),
         axis.text.y = element_text(hjust =1.0,size=8),
-        axis.ticks = element_line(colour = "grey50")) +
+        axis.ticks = element_line(colour = "grey50"),
+        legend.position = "right") +
   scale_x_continuous(breaks=c(0,20,40,60,80,100))+
-  scale_fill_manual(values = cbp,name="Waste disposal method")+
+  scale_fill_manual(values = cbp,name="Disposal method",
+                    labels=c("Collected (government,community association and private companies)",
+                             "Composted and Buried",
+                             "Dumped (within compound, street and latrine)",
+                             "Burnt (in open and pits)"))+
   labs(title = "Waste disposal in Kenyan counties", subtitle="Data: 2019 Kenya Population and Housing Census", x="Percentage of population",y =element_blank())
-
-  
+ggsave("tt_kenyacensuswaste.png")  
    
 
 
