@@ -1,10 +1,10 @@
 
----
-  title: "TidyTuesday-Kenya"
-author: Sherosha Raj
-date: 2021-01-19
-output: html_output
----
+
+#title: "TidyTuesday-Kenya"
+#author: Sherosha Raj
+#date: 2021-01-19
+#output: html_output
+
 
 
 ## Load the packages ##
@@ -63,6 +63,7 @@ tt_kenyacensuswaste<-ggplot(long)+
   theme(panel.grid.major=element_line(colour = "gray", linetype=3,size = 0.25),
         rect = element_rect(fill = "white", colour = "white", size = 0.25,linetype = 0),
         axis.text.y = element_text(hjust =1.0,size=8),
+        legend.text=element_text(size=7),
         axis.ticks = element_line(colour = "grey50"),
         legend.position = "right") +
   scale_x_continuous(breaks=c(0,20,40,60,80,100))+
