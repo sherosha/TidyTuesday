@@ -73,6 +73,7 @@ tt_kenyacensuswaste<-ggplot(long)+
                              "Dumped (within compound, street and latrine)",
                              "Burned (in open and pits)"))+
   labs(title = "Waste disposal in Kenyan counties", subtitle="Data: 2019 Kenya Population and Housing Census", x="Percentage of households",y =element_blank())
+
 ggsave("tt_kenyacensuswaste.png")  
    
 
